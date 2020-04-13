@@ -1,0 +1,33 @@
+{% extends "events/index.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="profile-update-block row">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+    <div class="d-flex flex-column justify-content-center align-items-center">
+      <div class="flex-item">
+        <img class="rounded-circle account-img" style="height: 150px;" src="{{ user.profile.image.url }}">
+      </div>
+      <h2 class="account-heading">{{ user.username }}</h2>
+      <div class="flex-item">
+      </div>
+    </div>
+    <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      <fieldset class="form-group">
+        <legend class="border-bottom mb-4">Profile Info</legend>
+        {{ u_form|crispy }}
+        {{ p_form|crispy }}
+      </fieldset>
+      <div class="form-group">
+        <button class="btn btn-outline-info" type="submit">Update</button>
+      </div>
+      <small><a href="{% url 'user-delete' user.username %}" class="content">Delete account?</a>
+        <a class="text-muted m-2" href="{% url 'password_reset' %}">Reset Password</a>
+      </small>
+
+    </form>
+  </div>
+
+</div>
+{% endblock content %}

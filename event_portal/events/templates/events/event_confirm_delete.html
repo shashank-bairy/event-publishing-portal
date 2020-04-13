@@ -1,0 +1,17 @@
+{% extends "events/index.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="text-center">
+  <div class="event-delete-block">
+    <form method="POST">
+      {% csrf_token %}
+      <fieldset class="form-group">
+        <h5 class="article-title">Are you sure you want to delete this event?</h5>
+      </fieldset>
+      <div class="form-group">
+        <input type="submit" class="btn btn-outline-danger" value="Yes, delete">
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock content %}

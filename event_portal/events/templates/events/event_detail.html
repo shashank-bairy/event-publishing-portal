@@ -1,0 +1,42 @@
+{% extends "events/base.html" %}
+{% block content %}
+<div class="row">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+    <div class="event-thumbnail text-center">
+      <h1 class="event-heading">{{event.name}}</h1>
+      <img class="my-3" style="width: 100%;" src="{{event.thumbnail.url}}" alt="Event thumbnail">
+    </div>
+    <dl class="event-details">
+      <dt>Organizer</dt>
+      <dd>{{event.organizer.first_name}}&nbsp;{{event.organizer.last_name}}</dd>
+      <dt>Date</dt>
+      <dd>{{event.date|date:'M d, Y'}}</dd>
+      <dt>Time</dt>
+      <dd>{{event.time}}</dd>
+      <dt>Venue</dt>
+      <dd>{{event.venue}}</dd>
+      <dt>Address</dt>
+      <dd>{{event.address}}</dd>
+      <dt>Description</dt>
+      <dd>{{event.description}}</dd>
+      <dt>Number of attendees</dt>
+      <dd>{{event.attendees.count}}</dd>
+    </dl>
+    <div class="event-options">
+      {% if user == event.organizer %}
+      <a href="{% url 'attendees_list' event.id %}" class="btn btn-primary">Attendees list</a>
+      <a href="{% url 'update_event' event.id %}" class="btn btn-primary">Edit event</a>
+      <a href="{% url 'delete_event' event.id %}" class="btn btn-danger">Delete event</a>
+      {% else %}
+      {% if is_attending %}
+      <a href="{% url 'remove_attendee' event.id %}" class="btn btn-danger">Not Attending</a>
+      {% else %}
+      <a href="{% url 'add_attendee' event.id %}" class="btn btn-primary">Attend</a>
+      {% endif %}
+      {% endif %}
+    </div>
+  </div>
+  <div class="col-md-3"></div>
+</div>
+{% endblock content %}

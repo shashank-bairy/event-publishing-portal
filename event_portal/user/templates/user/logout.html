@@ -1,0 +1,18 @@
+{% extends "events/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<main role="main" class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <h2>You have logged out.</h2>
+      <div class="border-top pt-3">
+        <span class="text-muted">
+          <a href="{% url 'login' %}">
+            Log in again
+          </a>
+        </span>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock content %}

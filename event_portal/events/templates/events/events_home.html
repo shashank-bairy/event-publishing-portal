@@ -1,0 +1,26 @@
+{% extends "events/base.html" %}
+{% block content %}
+<div class="row" style="border: none;">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+    {% for event in events %}
+    <div class=" card mb-3">
+      <img class="card-img-top" style="height: 300px;" src="{{ event.thumbnail.url }}" alt="Card image cap">
+      <div class="card-body">
+        <a href="{% url 'event_detail' event.pk %}" style="color: black;">
+          <h4>{{event.name}}</h4>
+        </a>
+        <p class="card-text">{{event.date|date:'M d, Y'}} at {{event.time}}</p>
+        <p class="card-text">
+          <b>Organized by:</b>
+          {{event.organizer.first_name}}&nbsp;{{event.organizer.last_name}}
+        </p>
+        <p class="card-text"><b>Description:</b><br>{{event.description|truncatewords:50}}</p>
+        <p class="card-text"><b>Number of attendees:</b>&nbsp;{{event.attendees.count}}</p>
+        <a href="{% url 'event_detail' event.pk %}" class="btn btn-primary">Details</a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock content %}

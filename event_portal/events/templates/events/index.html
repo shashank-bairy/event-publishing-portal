@@ -1,0 +1,9 @@
+{% extends "events/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div style="margin: 15% 15%;">
+  <h1>Welcome to FIRE EVENTS!!!</h1>
+  <br>
+  <a href="{% url 'login' %}" class="btn btn-info">Login to Continue</a>
+</div>
+{% endblock content %}

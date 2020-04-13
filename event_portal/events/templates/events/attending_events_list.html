@@ -1,0 +1,31 @@
+{% extends "events/base.html" %}
+{% block content %}
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <h4>Attending Events</h4>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Event Name</th>
+          <th scope="col">Date and Time</th>
+          <th scope="col">Details</th>
+          <th scope="col">Not Attend</th>
+        </tr>
+      </thead>
+      <tbody id="interns-list">
+        {% for event in events %}
+        <tr>
+          <th scope="row">{{forloop.counter}}</th>
+          <td>{{event.name}}</td>
+          <td>{{event.date|date:'M d, Y'}} at {{event.time}}</td>
+          <td><a href="{% url 'event_detail' event.id %}">Click here</a></td>
+          <td><a href="{% url 'remove_attendee' event.id %}" class="btn btn-danger">X</a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock content %}
